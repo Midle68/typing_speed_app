@@ -9,10 +9,10 @@
 #        (+) Set the valid parameters for the text to be properly displayed
 #        (+) Add Text-Entry widget and all the parameters to it
 #        (+) Add "Start" button + style it (image of a btn)
-#      TODO 6: (+/-) Add page for 'high_scores'
-#        (+/-) Create UI for high scores page
-#        Add high scores in English and Russian + Separate them (10 best scores for each)
-#      TODO 7: Add button on all the pages to return to the main menu
+#      TODO 6: (+) Add page for 'high_scores'
+#        (+) Create UI for high scores page
+#        (+) Add high scores in English and Russian + Separate them (10 best scores for each)
+#      TODO 7: (+) Add button on all the pages to return to the main menu
 
 #  TODO B: Data
 #      TODO 1: (+) Add texts in English
@@ -26,7 +26,7 @@
 #        (+) self.text state turns to NORMAL with focus() on this widget
 #      TODO 2: (+) Perceive the typing information
 #      TODO 3: (+) Turn the wrong letter in red
-#      TODO 4: Show on the interface the final result:
+#      TODO 4: (+) Show on the interface the final result:
 #        (+) Symbols per minute (may be wpm?)
 #        (+) Amount of errors made
 #        (+) Accuracy in %
@@ -36,15 +36,19 @@
 
 #  TODO after A & B & C:
 #      TODO ( B ) 4: (+) Add texts in english and russian
-#      TODO ( A ) 6: (+/-) Add page for 'High Score
-#      TODO ( A ) *: Add dark theme (later...)
+#      TODO ( A ) 6: (+) Add page for 'High Score
 
 #  TODO D: Code
 #      TODO 1: (+) Add notes to the code
-#      TODO 2: (+) MUST-HAVE! Refactor the code
+#      TODO 2: (+) Refactor the code
 
 
 from user_interface import UserInterface
 
-user_interface = UserInterface()
-user_interface.create_user_interface()
+
+def main():
+    user_interface = UserInterface()
+    user_interface.create_user_interface()
+
+
+main()
