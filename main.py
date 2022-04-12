@@ -51,4 +51,5 @@ def main():
     user_interface.create_user_interface()
 
 
-main()
+if __name__ == '__main__':
+    main()
