@@ -49,7 +49,7 @@ class TypingPage:
         # Russian text limit - 400 symbols !!!
 
         # Add all the necessary widgets
-        self.canvas_text = self.canvas.create_text(350, 100, text="",
+        self.canvas_text = self.canvas.create_text(350, 105, text="",
                                                    fill=BLUE, font=RUSSIAN_FONT, width=650)
 
         self.timer = Label(self.global_frame, text=f"Time: Start", font=MIDDLE_FONT,
