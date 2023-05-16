@@ -16,7 +16,7 @@ class HighScores:
         with open("high_scores.csv") as high_scores_file:
             high_scores = pandas.read_csv(high_scores_file)
 
-        # English Rating
+        # ----- English Rating ----- #
 
         # Counting number of scores in english texts
         rows = 0
@@ -118,7 +118,9 @@ class HighScores:
         horizontal_line_ru = ttk.Separator(self.global_frame, orient=HORIZONTAL)
         horizontal_line_ru.grid(row=3, column=8, columnspan=7, sticky="ew", pady=10)
 
-        number = 1
+        number = 1  # Const to place widgets properly
+
+        # Show each high score
         for index, row in high_scores.iterrows():
             if row["language"] == "Russian":
                 num_label = Label(self.global_frame, text=f"{number}", font=ENGLISH_FONT, fg=FONT_COLOR,

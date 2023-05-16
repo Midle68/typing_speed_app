@@ -21,7 +21,7 @@ class TypingPage:
         self.now = None
         self.period_timer = None
 
-        # Consider the language choose random text and set the width of the player's text widget
+        # Choose random text based on the chosen language and set the width of the player's text widget
         if self.check_english():
             with open('./texts/english_texts.txt') as data_file:
                 self.text = random.choice(data_file.readlines())
@@ -48,7 +48,9 @@ class TypingPage:
         # English text limit - 280 symbols !!!
         # Russian text limit - 400 symbols !!!
 
-        # Add all the necessary widgets
+        # ----- Widgets ----- #
+
+        # Canvas where words of the text will be displayed
         self.canvas_text = self.canvas.create_text(350, 105, text="",
                                                    fill=BLUE, font=RUSSIAN_FONT, width=650)
 
@@ -68,7 +70,7 @@ class TypingPage:
                                     bg=BACKGROUND_COLOR, fg="white")
         self.accuracy_label.grid(row=3, column=2)
 
-        # Change player_text_widget parameters
+        # Changing player_text_widget parameters
         self.player_text_widget = Text(self.global_frame, width=text_width, height=6, padx=18, font=ENGLISH_FONT)
         self.player_text_widget.grid(row=4, column=0, columnspan=3, pady=20)
         self.player_text_widget.insert(1.0, "Type here")
@@ -219,13 +221,15 @@ class TypingPage:
         symbols_per_minute = math.floor((len(self.text_list) / difference) * 60)
         accuracy = round(100 - self.mistakes / len(self.text_list) * 100, 2)
 
+        # Insert the speed and accuracy
         self.speed_label.config(text=f"Speed: {symbols_per_minute} spm")
         self.accuracy_label.config(text=f"Accuracy: {accuracy}%")
 
+        # Saving current date provided it's a Top-10 score
         current_date = datetime.datetime.now().strftime("%d %B %Y")
 
-        # Save the result inside the 'high_scores.csv'
-        try:  # Check if 'high_scores.csv' exists
+        # Saving the result inside the 'high_scores.csv'
+        try:  # Checking if 'high_scores.csv' exists
             with open("high_scores.csv") as high_scores_file:
                 high_scores = pandas.read_csv(high_scores_file)
 
@@ -239,13 +243,13 @@ class TypingPage:
                 index=[i for i in range(len(high_scores.index) + 1) if i]
             )
 
-            # Check the number of scores for a chosen language
+            # Checking the number of scores for a chosen language
             high_scores_rows = 0
             for index, row in high_scores.iterrows():
                 if row["language"] == self.language:
                     high_scores_rows += 1
 
-            # If there are 10 results already, check if the current one outperforms one of the previous
+            # If there are 10 results already, checking if the current one outperforms one of the previous
             if high_scores_rows == 10:
                 for index, row in high_scores.iterrows():
                     if row["language"] == self.language:
@@ -263,7 +267,7 @@ class TypingPage:
                             )
                             break
             else:
-                # If there aren't 10 results - just add the current one
+                # If there aren't 10 results - just adding the current one
                 current_data = pandas.DataFrame(
                     {
                         "speed": [symbols_per_minute],
@@ -281,6 +285,7 @@ class TypingPage:
             except UnboundLocalError:
                 pass
 
+        # If there aren't 'high_scores.csv' file, creating a new one
         except FileNotFoundError:
             current_data = pandas.DataFrame(
                 {
