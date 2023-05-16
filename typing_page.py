@@ -285,7 +285,7 @@ class TypingPage:
             except UnboundLocalError:
                 pass
 
-        # If there aren't 'high_scores.csv' file, creating a new one
+        # If there aren't 'high_scores.csv' file, a new one is being created
         except FileNotFoundError:
             current_data = pandas.DataFrame(
                 {
